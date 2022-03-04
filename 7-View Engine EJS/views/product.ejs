@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title%></title>
+    <!-- Import css, js links -->
+    <%- include('partials/links')%>
+  </head>
+  <body class="<%= dark==true? 'dark': 'light'%>">
+    <div class="container">
+      <!-- navbar starts -->
+      <%- include('partials/navbar')%>
+      <!-- navbar end -->
+      <h1 class="text-center"><%= title%></h1>
+      <%= content%>
+    <div class="row">
+        <!-- example for each one product -->
+        <div class="col-md-12 mb-4 products">
+            <% if(data){%>
+            <h2><%= data.brand%></h2>
+            <ul>
+                <li>Brand: <%= data.brand%></li>
+                <li>Model: <%= data.model%></li>
+                <li>Power: <%= data.power%></li>
+                <li>Gear: <%= data.gear%></li>
+                <li>Fuel: <%= data.fuel%></li>
+                <li>prise: <%= data.prise%></li>
+                <li>Doors: <%= data.doors%></li>
+                <a class="btn btn-success" href="/products">Go To All Products</a>
+            </ul>
+            <%}else{%>
+                <h2 class="text-danger">No Product found</h2>
+                <a class="btn btn-success" href="/products">Go To All Products</a>
+                <%}%>
+        </div>
+    </div>
+</div>
+    <script>
+      // alert('<%= title%>')
+    </script>
+  </body>
+</html>

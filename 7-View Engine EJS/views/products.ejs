@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title%></title>
+    <!-- Import css, js links -->
+    <%- include('partials/links')%>
+  </head>
+
+  <body class="<%= dark==true? 'dark': 'light'%>">
+    <div class="container">
+      <!-- navbar starts -->
+      <%- include('partials/navbar')%>
+      <!-- navbar end -->
+      <h1 class="text-center"><%= title%></h1>
+      <%= content%> 
+    
+    <div class="row">
+        <!-- example for each one product -->
+        <% data.forEach(item=>{ %>
+        <div class="col-md-4 mb-4 products">
+            <h2><%= item.brand%></h2>
+            <ul>
+                <li>Brand: <%= item.brand%></li>
+                <li>Model: <%= item.model%></li>
+                <li>Power: <%= item.power%></li>
+                <li>Gear: <%= item.gear%></li>
+                <li>Fuel: <%= item.fuel%></li>
+                <li>prise: <%= item.prise%></li>
+                <li>Doors: <%= item.doors%></li>
+                <a class="btn btn-success" href="/products?id=<%= item.id%>">Read more</a>
+            </ul>
+        </div>
+<% }) %>
+    </div>
+</div>
+    <script>
+      // alert('<%= title%>')
+    </script>
+  </body>
+</html>
