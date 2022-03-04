@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="css/templatemo-style.css" />
+  </head>
+  <body>
+    <!-- start nav -->
+    <%- include('partials/navigation.ejs', {page: 'register'})%>
+    <!-- end nav -->
+
+    <!-- start form -->
+    <div
+      class="tm-hero d-flex justify-content-center align-items-center"
+      data-parallax="scroll"
+      data-image-src="img/hero.jpg"
+    ></div>
+    <div class="container-fluid tm-mt-60">
+      <div class="row tm-mb-50">
+        <div class="col-lg-12 col-12 mb-5">
+          <h2 class="tm-text-primary mb-5 text-center">Register</h2>
+          <form id="register-form" action="" method="POST" class="mx-auto">
+            <div class="form-group">
+              <input
+                pristine-required-message="Please enter your first name"
+                minlength="2"
+                maxlength="50"
+                id="fname-input"
+                type="text"
+                name="first name"
+                class="form-control rounded-0 family-name"
+                placeholder="First Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                pristine-required-message="Please enter your last name"
+                minlength="2"
+                maxlength="50"
+                id="lname-input"
+                type="text"
+                name="last name"
+                class="form-control rounded-0 family-name"
+                placeholder="Last Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                pristine-required-message="Please choose a username"
+                minlength="2"
+                maxlength="50"
+                id="username-input"
+                type="text"
+                name="username"
+                class="form-control rounded-0"
+                placeholder="Username"
+                required
+                pattern="/^[a-zA-Z]+$/g"
+                data-pristine-pattern-message="username should contains only letters"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                pristine-required-message="Please enter your email"
+                data-pristine-type="email"
+                minlength="4"
+                maxlength="50"
+                id="email-input"
+                type="email"
+                class="form-control rounded-0"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                pristine-required-message="Please enter your password"
+                minlength="8"
+                maxlength="20"
+                id="password-input"
+                type="password"
+                name="password"
+                class="form-control rounded-0"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                pristine-required-message="Password not the same"
+                data-pristine-equals="#password-input"
+                id="repassword-input"
+                type="password"
+                name="re password"
+                class="form-control rounded-0"
+                placeholder="Re-Password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                pristine-required-message="Please enter birth date"
+                id="birthday-input"
+                type="date"
+                rows="8"
+                name="birth date"
+                class="form-control rounded-0"
+                placeholder="Birth Date"
+                required
+              />
+            </div>
+            <div class="form-group tm-text-right">
+              <button id="register-button" class="btn btn-primary">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- end form -->
+
+    <!-- footer start -->
+    <%- include('partials/footer.ejs') %>
+    <!-- footer end -->
+
+    <script src="js/plugins.js"></script>
+    <script
+      src="./js/pristine/dist/pristine.min.js"
+      type="text/javascript"
+    ></script>
+    <script>
+      $(window).on("load", function () {
+        $("body").addClass("loaded");
+      });
+
+      const form = document.querySelector("#register-form");
+      const fnameInp = document.querySelector("#fname-input");
+      const lnameInp = document.querySelector("#lname-input");
+      const emailInp = document.querySelector('#email-input')
+      const usernameInp = document.querySelector("#username-input");
+      const passwordInp = document.querySelector("#password-input");
+      //   const rePasswordInp = document.querySelector('#repassword-input');
+      const bDateInp = document.querySelector("#birthday-input");
+      const registerBtn = document.querySelector("#register-button");
+
+      //   pristine.addValidator('name-range', (value) => {
+      //       if(value.length > 2 && value.length < 50){
+      //           return true
+      //         }
+      //         return false
+      //     }, 'Name should contain minimum 2 characters and maximum 50 characters', 51, false)
+
+      registerBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const pristine = new Pristine(form);
+        const valid = pristine.validate();
+        console.log(valid);
+        if (valid) {
+          try {
+            const data = {
+              fname: fnameInp.value,
+              lname: lnameInp.value,
+              username: usernameInp.value,
+              email: emailInp.value,
+              password: passwordInp.value,
+              //   rePassword: rePasswordInp.value,
+              bDate: bDateInp.value,
+            };
+            const response = await fetch("/register", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            console.log(result);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
