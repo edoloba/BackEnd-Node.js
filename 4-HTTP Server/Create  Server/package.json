@@ -1,0 +1,16 @@
+{
+  "name": "createserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app",
+    "start": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "npm": "^8.3.1"
+  }
+}
