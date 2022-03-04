@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Performance Page</h1>
+    <p><strong>System Time:</strong> <%= time%></p>
+    <p><strong>Free Memory:</strong> <%= freemem/1024%></p>
+    <p><strong>CPUs:</strong></p>
+    
+        <% cpus.forEach(cpu=>{ %>
+            <ul>
+            <li>Model: <%= cpu.model %></li>
+            <li>Speed: <%= cpu.speed %></li>
+            </ul>
+        <%})%>
+        <p><strong>Node Version:</strong> <%= node_version%></p>
+        <p><strong>OS Version:</strong> <%= os_version%></p>
+</body>
+</html>
