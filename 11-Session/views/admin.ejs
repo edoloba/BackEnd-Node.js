@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/CSS/style.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <h1 style="text-align: center">Welcome</h1>
+    <ul>
+      <li>
+        <a href="/admin/logout">LogOut</a>
+      </li>
+      <li>
+        <button id="logOutBtn">LogOut</button>
+      </li>
+    </ul>
+    <script>
+      // logout button eventListener
+      const logOutBtn = document.querySelector("#logOutBtn");
+      logOutBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const response = await fetch("/admin/logout", {
+          method: "POST",
+        });
+        const answer = await response.json();
+        console.log(answer);
+        if (answer === "done") {
+          window.location = "/login";
+        }
+        // else {
+        //     window.location = '/admin'
+        // }
+      });
+      // catch(err) {
+      //     console.log(err);
+      // }
+    </script>
+  </body>
+</html>

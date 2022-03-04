@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="../public/CSS/style.css">
+</head>
+<body class="align">
+    <h1>Log In</h1>
+        <div class="grid">
+      
+          <form method="POST" class="form login">
+      
+            <div class="form__field">
+              <label for="login__username"><svg class="icon">
+                  <use xlink:href="#icon-user"></use>
+                </svg><span class="hidden">Username</span></label>
+              <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" required>
+            </div>
+      
+            <div class="form__field">
+              <label for="login__password"><svg class="icon">
+                  <use xlink:href="#icon-lock"></use>
+                </svg><span class="hidden">Password</span></label>
+              <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
+            </div>
+      
+            <div class="form__field">
+              <input type="submit" value="Log In" id="login__button">
+            </div>
+      
+          </form>
+          <script>
+            //   write script to send username nd password to /login route using fetch at login button click
+            const username = document.querySelector('#login__username');
+            const password = document.querySelector('#login__password');
+            const loginButton = document.querySelector('#login__button');
+
+            loginButton.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const data = {
+                    username: username.value,
+                    password: password.value
+                };
+                try{
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                           'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    const answer = await response.json();
+                    if(answer == 'done') {
+                        window.location = '/admin'
+                    } else {
+                        alert('Something wrong')
+                    }
+                } catch(err) {
+                    console.log(err);
+                }
+            })
+
+          </script>
+</body>
+</html>
