@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h2>Upload File</h2>
+    <div>
+        <label for="usernameInp">Username</label>
+        <input type="text" id="usernameInp">
+    </div>
+    <div>
+        <label for="fileInp">UserImage</label>
+        <input type="file" id="fileInp" multiple accept="image/*">
+    </div>
+    <button id="submitBtn">Submit</button>
+
+
+    <script>
+        const usernameInp = document.querySelector('#usernameInp');
+        const fileInp = document.querySelector('#fileInp');
+        const submitBtn = document.querySelector('#submitBtn');
+
+        submitBtn.addEventListener('click', async(e) => {
+            e.preventDefault();
+            // create a FormData, it's a class to allow us to create an OBJECT that we can send to server side. This OBj can contain string and binary(upload file)
+            const formData = new FormData();
+            // add the username value (string) to formData
+            formData.append('username', usernameInp.value)
+            // add the file (binary) to formData
+            formData.append('userImage', fileInp.files[0])
+            // send data to server using fetch
+            const response = await fetch('/savedata', {
+                method:'POST',
+                body: formData
+            })
+            const result = await response.json();
+            console.log(result);
+        })
+    </script>
+</body>
+</html>
