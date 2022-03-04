@@ -1,0 +1,21 @@
+{
+  "name": "7.1-ejs-exercise",
+  "version": "1.0.0",
+  "description": "1- partials (folder)         a- cssLinks.ejs         b- jsLinks.ejs         c- navbar.ejs         d- footer.ejs     2- content (folder)         e- home.ejs         f- about.ejs         g- products.ejs         h- product.ejs     3- mainTemplate.ejs ##  b- routes (folder)     1- home.js     2- products.js     3- about.js ##  c- public (folder)     1- css (folder)          a- style.css     2- js (folder)         a- script.js     3- images (folder) ##  d- data (folder)     products.json",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app --ignore '*.json' "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "dotenv": "^14.3.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "jquery": "^3.6.0",
+    "morgan": "^1.10.0"
+  }
+}
