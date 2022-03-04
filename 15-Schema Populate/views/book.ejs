@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= book.title%></title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/navbar')%>
+    <div class="container">
+        <h1 class="text-center display-4"><%= book.title%></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Author: <strong><%= book.author.name%></strong></p>
+                <p>Author Country: <strong><%= book.author.address.country%></strong></p>
+                <p>€ <strong><%= book.prise%></strong></p>
+                <p>Pages: <strong><%= book.pages%></strong></p>
+                <p>Description: <strong><%= book.description%></strong></p>
+                <a href="/" class="btn btn-success">Back to Main</a>
+                <script src="/jquery/dist/jquery.min.js"></script>
+                <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            </div>
+        </div>
+    </div>
+    <%- include('partials/modal')%>
+    <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Store</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('partials/navbar')%>
+
+    <div class="container">
+        <h1 class="text-center display-4">Search Results (<%= books.length%>)</h1>
+      <% books.forEach((book, loop)=>{ %>
+    <!-- First loop must open a new row(and open a new row each 4 items) -->
+    <% if (loop === 0){ %>
+        <div class="row">
+            <%}else{%>
+                <% if(loop % 4 === 0){ %>
+                </div>
+        <div class="row">
+            <%}%>
+            <%}%>
+            <div class="col-md-3 mb-3">
+                <div class="card" style="width: 100%;">
+                <div class="card-body bg-dark border p-4">
+                    <h5 class="card-title"><%= book.title%></h5>
+                    <!-- REMEMBER -->
+                    <% if(book.author){ %>
+                        <p class="card-text">Author: <%= book.author.name%></p>
+                  <%}%>
+                  <a href="/books/<%= book._id%>" class="btn btn-primary">Go to Book</a>
+                  <!-- href='javascript:;' tell it is reserved for some JS operations -->
+                  <a href="javascript:;" class="btn btn-warning" onclick="showDescription(`<%= book.title%>`, `<%= book.description%>`)">Description</a>
+                </div>
+            </div>
+        </div>
+        <!-- Only in last loop closing row div -->
+         <% if(loop == books.length -1){ %>
+         </div>
+         <%}%>
+         <%})%>
+         
+        </div>
+
+        <%- include('partials/modal')%>
+  <script src="/js/script.js"></script>
+  <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
